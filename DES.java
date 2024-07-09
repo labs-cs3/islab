@@ -6,7 +6,7 @@ public class DESExample {
 
     public static void main(String[] args) throws Exception {
         String originalString = "Hello, World!";
-        String key = "ThisIsASecretKey"; 
+        String key = "12345678"; // Key must be 8 bytes for DES
 
         byte[] encryptedBytes = encrypt(originalString, key);
         System.out.println("Encrypted: " + Base64.getEncoder().encodeToString(encryptedBytes));
@@ -23,7 +23,7 @@ public class DESExample {
     }
 
     public static String decrypt(byte[] cipherText, String key) throws Exception {
-        Cipher cipher = Cipher.getInstance("AES");
+        Cipher cipher = Cipher.getInstance("DES");
         SecretKeySpec secretKey = new SecretKeySpec(key.getBytes(), "DES");
         cipher.init(Cipher.DECRYPT_MODE, secretKey);
         byte[] decryptedBytes = cipher.doFinal(cipherText);
